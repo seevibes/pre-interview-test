@@ -30,3 +30,8 @@ Create a command-line program that will connect to the IMDB API and given a part
 The test should take about 30 minutes to complete.
 
 Whether you've applied to Seevibes through an internship program, or just want to have fun, go ahead! Fork and tell us.
+
+
+## Need help?
+
+You can contact François Beausoleil (francois@seevibes.com) if you need any help.
