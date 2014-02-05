@@ -1,0 +1,22 @@
+simon@simon-desktop:~/pre-interview-test$ ruby imdb.rb "star wars"
+Title: Star Wars: Episode IV - A New Hope
+Year: 1977
+simon@simon-desktop:~/pre-interview-test$ ruby imdb.rb avengers
+Title: The Avengers
+Year: 2012
+simon@simon-desktop:~/pre-interview-test$ ruby imdb.rb watchmen
+Title: Watchmen
+Year: 2009
+simon@simon-desktop:~/pre-interview-test$ ruby imdb.rb "the house of the devil"
+Title: The House of the Devil
+Year: 2009
+simon@simon-desktop:~/pre-interview-test$ 
+
+
+
+
+
+
+
+
+
