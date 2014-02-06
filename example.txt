@@ -1,0 +1,26 @@
+Pier-Luc@Principal ~/seevibes
+$ python3 main.py avengers
+Title: The Avengers
+Year: 2012
+
+Pier-Luc@Principal ~/seevibes
+$ python3 main.py batman
+Title: Batman
+Year: 1989
+
+Pier-Luc@Principal ~/seevibes
+$ python3 main.py hobbit
+Title: The Hobbit: An Unexpected Journey
+Year: 2012
+
+Pier-Luc@Principal ~/seevibes
+$ python3 main.py basterds
+Title: Inglourious Basterds
+Year: 2009
+
+Pier-Luc@Principal ~/seevibes
+$ python3 main.py
+Partial movie title :
+smaug
+Title: The Hobbit: The Desolation of Smaug
+Year: 2013
