@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'rest-client'
+gem 'rest-client', '~> 1.6.7'
