@@ -4,7 +4,7 @@ require 'rest-client'
 require 'json'
 
 if ARGV.size < 1
-  puts 'manual.rb <title>'
+  puts 'program.rb <title>'
   puts '    title: partial title of a movie'
   exit 1
 end
