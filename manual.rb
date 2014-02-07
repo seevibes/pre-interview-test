@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-# This solution is done without the gem that does everything for me.
-
 require 'rest-client'
 require 'json'
 
