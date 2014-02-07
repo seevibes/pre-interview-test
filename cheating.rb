@@ -14,7 +14,9 @@ end
 name = ARGV.join(' ')
 
 res = Imdb::Search.new(name)
-res.movies.each do |movie|
-  puts "Title: #{movie.title}"
-  puts "Year: #{movie.year}"
-end
+movie = res.movies.first
+
+# the gem gives us the name with the date in it. Remove it since we don't need it.
+title = movie.title.gsub(/\(\d{4}\)$/, '').rstrip
+puts "Title: #{title}"
+puts "Year: #{movie.year}"
