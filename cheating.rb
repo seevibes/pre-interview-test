@@ -7,7 +7,7 @@ require 'imdb'
 
 if ARGV.size < 1
   puts 'usage: cheating.rb <title>'
-  puts '       title: partial title of a movie'
+  puts '    title: partial title of a movie'
   exit 1
 end
 
@@ -17,6 +17,10 @@ res = Imdb::Search.new(name)
 movie = res.movies.first
 
 # the gem gives us the name with the date in it. Remove it since we don't need it.
-title = movie.title.gsub(/\(\d{4}\)$/, '').rstrip
-puts "Title: #{title}"
-puts "Year: #{movie.year}"
+if movie
+  title = movie.title.gsub(/\(\d{4}\)$/, '').rstrip
+  puts "Title: #{title}"
+  puts "Year: #{movie.year}"
+else
+  puts "Could not find anything related to: #{name}"
+end
