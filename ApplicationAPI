@@ -1,0 +1,97 @@
+import java.io.*;
+import java.net.*;
+import java.util.Scanner;
+/**
+ * Seevibes Pre-Interview Test
+ * @author Anthony Corriveau
+ * @version 1.0
+ */
+public class DemarrerApp {
+
+	 public static void main(String[] args){		 
+		 DemarrerApp application = new DemarrerApp();
+	 }
+	 
+	 public DemarrerApp(){
+			Connexion connexion = new Connexion();			
+		}
+	 
+	 public class Connexion{
+		 
+		 //Attributs de la classe
+		 private Scanner sc = null;
+		 private String NomDuFilm= null;
+		 private String[] tabElementDunFilm = new String[2];
+		 
+		 public Connexion(){			
+			 System.out.print("$ ./program ");
+			 demanderNom();
+			
+			 try {
+				tabElementDunFilm = MatchFilm.MatchFilmNomAnnee(NomDuFilm);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+			 if(tabElementDunFilm==null){
+				 System.out.println("Le film entré n'existe pas");
+			 }
+			 else{
+				 System.out.println("Title: "+ tabElementDunFilm[0]);
+				 System.out.println("Year: " + tabElementDunFilm[1]);					 	
+			 }		 
+		 }
+	
+		private void demanderNom(){			 
+			   //Demande le nom d'un film dans la console
+			   sc = new Scanner(System.in);
+			   NomDuFilm=sc.nextLine();	
+			   
+			   sc.close(); //Ferme le Scanner
+		 }
+	 }
+	 
+	 public static class MatchFilm{	 
+		 		 
+		 public static String[] MatchFilmNomAnnee (String NomDuFilm) throws IOException{
+			
+			 final int NBCASESANNEE = 13;	//Toujours 13 cases			 
+			 URL urlAPI = new URL("http://deanclatworthy.com/imdb/?q="+NomDuFilm);
+			 BufferedReader reader;			 			 
+			 int indexTitre = 0;
+			 int indexAnnee = 0;			 
+			 String ligneFinal= null;
+			 String line= null;
+			 String title= null;
+			 String annee= null;
+			 String[] tabContenuFilm= null;		 
+		
+			 reader = new BufferedReader(new InputStreamReader(urlAPI.openStream()));				 
+			
+		     while ((line = reader.readLine()) != null) {		          		         
+		         if(!(line.contains("error")))	ligneFinal = line;    
+		         else{return tabContenuFilm=null;}
+		     }
+		    
+		     reader.close();	//Ferme le BufferedReader
+
+		     indexTitre = ligneFinal.indexOf("\"title\"");	
+		     indexAnnee = ligneFinal.indexOf("\"year\"");	
+		   
+		     title = ligneFinal;
+		     title = title.substring(indexTitre,indexAnnee-1); // Affiche : "title":"nom du film complet"
+		     title = title.substring(9,title.length()-1);  	  // Affiche : nom du film complet	     
+		     
+		     annee = ligneFinal;
+		     annee = annee.substring(indexAnnee,indexAnnee+NBCASESANNEE); // Affiche : "year":"XXXX"
+		     annee = annee.substring(8,12);	// Affiche : XXXX
+		   		     
+		     tabContenuFilm = new String[2];		     
+		     tabContenuFilm[0]= title;
+		     tabContenuFilm[1]= annee;
+		     
+		     return tabContenuFilm;			     
+		 }
+	 }
+ }
