@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Net;
+
+namespace seevibes_pretest
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            string urlString;
+
+            Console.Write("\nEnter movie title: ");
+            urlString = "http://deanclatworthy.com/imdb/?type=xml&yg=0&q=" + Console.ReadLine();
+
+            try
+            {
+                xmlDoc.Load(urlString);
+
+                if (xmlDoc.DocumentElement.Name != "error")
+                {
+                    Console.WriteLine("Title: " + xmlDoc.SelectSingleNode("movie/title").InnerText);
+                    Console.WriteLine("Year: " + xmlDoc.SelectSingleNode("movie/year").InnerText);
+                }
+                else
+                {
+                    Console.WriteLine("Error: no movie found");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            Console.ReadLine();
+            
+        }
+    }
+}
