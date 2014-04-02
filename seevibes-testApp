@@ -1,0 +1,86 @@
+#!/bin/sh
+#########################################################################
+# Seevibes Pre-test application					     #
+# Emmanuel Scotto						     #
+#########################################################################
+
+clear
+echo "###################################################################"
+echo "# SEEVIBES — Pre-test Application				  #"
+echo "# Looking for the first movie from IMDB database   		  #"
+echo "# ————————							  #"
+echo "# Please, enter a movie name (even a partial one) and press Enter #"
+echo "###################################################################"
+
+#########################################################################
+# VARIABLES							     #
+#########################################################################
+MOVIENAME=""
+IMDBURL="http://www.imdb.com/xml/find?xml=1&nr=1&tt=on&q="
+IMDBRESULT=""
+MOVIERESNAME=""
+MOVIERESYEAR=""
+
+#########################################################################
+# FUNCTIONS							     #
+#########################################################################
+#
+#	main function
+#
+function main(){
+	echo ">> Enter the movie name (or a part of it...) : "
+	read -e MOVIENAME
+	launchLookup
+}
+#
+#	launchLookup function
+#
+function launchLookup(){
+	if [ -z "$MOVIENAME" ]
+	then
+		echo ">> Movie name is empty! What's going wrong? No imagination?"
+		main
+	else
+		echo ">> OK, looking for $MOVIENAME. Please wait..."
+		lookupMovie
+	fi
+}
+#
+#	confirmAgain function
+#
+function confirmAgain(){
+	read -p ">> Do you want to try again (type y if yes. Simple, no?)? " -n 1 -r
+	echo 
+	if [[ ! $REPLY =~ ^[Yy]$ ]]
+	then
+    		echo ">> OK... See you soon..."
+		exit
+	else
+		main
+	fi
+}
+#
+#	lookupMovie function
+#
+function lookupMovie(){
+	echo ">> Retrieving data from IMDB database..."
+	MOVIERESNAME=$(xmllint --xpath '/IMDbResults/ResultSet[1]/ImdbEntity[1]/text()' $IMDBURL$MOVIENAME)
+	MOVIERESYEAR=$(xmllint --xpath '/IMDbResults/ResultSet[1]/ImdbEntity[1]/Description/text()' $IMDBURL$MOVIENAME)
+	if [ -z "$MOVIERESNAME" ]
+	then
+		echo ">> Hey! $MOVIENAME is not a movie, right? It's not in IMDB."
+		confirmAgain
+	else
+		echo ">> Finding the first occurence in IMDB for $MOVIENAME: "
+		echo "Title :: $MOVIERESNAME "
+		echo "Year :: $MOVIERESYEAR"
+		confirmAgain
+	fi
+}
+
+# PROG
+main 
+
+
+
+
