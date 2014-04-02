@@ -28,7 +28,7 @@ MOVIERESYEAR=""
 #	main function
 #
 function main(){
-	echo ">> Enter the movie name (or a part of it...) : "
+	echo ">> Enter a partial movie name (just a word, that's enough) : "
 	read -e MOVIENAME
 	launchLookup
 }
@@ -38,7 +38,7 @@ function main(){
 function launchLookup(){
 	if [ -z "$MOVIENAME" ]
 	then
-		echo ">> Movie name is empty! What's going wrong? No imagination?"
+		echo ">> You typed nothing! What's going wrong? No imagination?"
 		main
 	else
 		echo ">> OK, looking for $MOVIENAME. Please wait..."
