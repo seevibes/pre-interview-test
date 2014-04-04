@@ -77,9 +77,17 @@ function lookupMovie(){
 		confirmAgain
 	fi
 }
-
+#
 # PROG
-main 
+# Check if parameter in command line. If not launch main(), otherwise launch directly launchLookup()
+if [ -z "$1" ]
+then
+	main
+else
+	MOVIENAME=$1
+	launchLookup
+fi
+ 
 
 
 
