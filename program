@@ -1,0 +1,60 @@
+#!/usr/bin/python
+
+# Many imports, much wow
+import sys
+
+import urllib
+import httplib
+import json
+
+
+
+# Doge variable names, much pro, so PEP8
+str_imdb_search_parameters = "/xml/search?json=1&tt=on&ttype=ft&q="
+str_imdb_search_title = ""
+
+
+# Loop lvl>9000
+i = 1
+while i < len(sys.argv):
+  _arg = sys.argv[i]
+
+  # Escape the string with the %xx notation for URL, since people will try to break the program
+  _arg_escaped = urllib.quote_plus(_arg)
+
+  # Many branches, so suboptimal
+  if str_imdb_search_title == "":
+    str_imdb_search_title = _arg_escaped
+  else:
+    str_imdb_search_title += "+"
+    str_imdb_search_title += _arg_escaped
+
+  i += 1
+
+
+# Much errors, bugs replicate
+if str_imdb_search_title == "":
+  sys.stderr.write("No title parameter has been passed.")
+  sys.exit(1)
+
+
+# So software, many connections
+conn_imdb = httplib.HTTPConnection("www.imdb.com")
+conn_imdb.request("GET", str_imdb_search_parameters + str_imdb_search_title)
+res = conn_imdb.getresponse()
+json_data = res.read()
+res.close()
+
+data_all = json.loads(json_data)
+data_movie = None
+try:
+  data_movie = data_all["title_popular"][0]
+except:
+  print "No movie has been found :("
+  sys.exit(0)
+
+
+# So responsive!
+print "Title: " + data_movie["title"]
+print "Year: " + data_movie["title_description"][0:4]
+
