@@ -58,7 +58,10 @@ except:
 data_all = json.loads(json_data)
 data_movie = None
 try:
-  data_movie = data_all["title_substring"][0]
+  try:
+    data_movie = data_all["title_substring"][0]
+  except:
+    data_movie = data_all["title_popular"][0]
 except:
   print "No movie has been found :("
   sys.exit(0)
