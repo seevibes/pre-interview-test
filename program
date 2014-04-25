@@ -10,7 +10,7 @@ import json
 
 
 # Doge variable names, much pro, so PEP8
-str_imdb_search_parameters = "/xml/search?json=1&tt=on&ttype=ft&q="
+str_imdb_search_parameters = "/xml/search?json=1&tt=on&ttype=ft&q=" # ttype=ft forces only movies
 str_imdb_search_title = ""
 
 
@@ -39,16 +39,22 @@ if str_imdb_search_title == "":
 
 
 # So software, many connections
-conn_imdb = httplib.HTTPConnection("www.imdb.com")
-conn_imdb.request("GET", str_imdb_search_parameters + str_imdb_search_title)
-res = conn_imdb.getresponse()
-json_data = res.read()
-res.close()
+json_data = None
+try:
+  conn_imdb = httplib.HTTPConnection("www.imdb.com")
+  conn_imdb.request("GET", str_imdb_search_parameters + str_imdb_search_title)
+  res = conn_imdb.getresponse()
+  json_data = res.read()
+  res.close()
+except:
+  print "An exception occured during the connection to the server."
+  sys.exit(1)
 
+print json_data
 data_all = json.loads(json_data)
 data_movie = None
 try:
-  data_movie = data_all["title_popular"][0]
+  data_movie = data_all["title_substring"][0]
 except:
   print "No movie has been found :("
   sys.exit(0)
