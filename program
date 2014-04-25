@@ -34,7 +34,7 @@ while i < len(sys.argv):
 
 # Much errors, bugs replicate
 if str_imdb_search_title == "":
-  sys.stderr.write("No title parameter has been passed.")
+  sys.stderr.write("No title parameter has been passed.\n")
   sys.exit(1)
 
 
@@ -44,10 +44,13 @@ try:
   conn_imdb = httplib.HTTPConnection("www.imdb.com")
   conn_imdb.request("GET", str_imdb_search_parameters + str_imdb_search_title)
   res = conn_imdb.getresponse()
+  if res.status != 200:
+    sys.stderr.write("An error occurred fetching the movie from IMDb.\n")
+    sys.exit(1)
   json_data = res.read()
   res.close()
 except:
-  print "An exception occured during the connection to the server."
+  sys.stderr.write("An exception occured during the connection to the server.\n")
   sys.exit(1)
 
 
