@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Many imports, much wow
+
 import sys
 
 import urllib
@@ -9,12 +9,12 @@ import json
 
 
 
-# Doge variable names, much pro, so PEP8
+# Strings to be passed to IMDb API, very PEP8
 str_imdb_search_parameters = "/xml/search?json=1&tt=on&ttype=ft&q=" # ttype=ft forces only movies
 str_imdb_search_title = ""
 
 
-# Loop lvl>9000
+# Loop through the command line arguments and concatenate with a "+"
 i = 1
 while i < len(sys.argv):
   _arg = sys.argv[i]
@@ -26,19 +26,19 @@ while i < len(sys.argv):
   if str_imdb_search_title == "":
     str_imdb_search_title = _arg_escaped
   else:
-    str_imdb_search_title += "+"
-    str_imdb_search_title += _arg_escaped
+    str_imdb_search_title += "+" + _arg_escaped
+    #str_imdb_search_title += _arg_escaped
 
   i += 1
 
 
-# Much errors, bugs replicate
+# Check if no parameter has been passed
 if str_imdb_search_title == "":
   sys.stderr.write("No title parameter has been passed.\n")
   sys.exit(1)
 
 
-# So software, many connections
+# Create connection to IMDb and send "GET" request with string parameters
 json_data = None
 try:
   conn_imdb = httplib.HTTPConnection("www.imdb.com")
@@ -54,7 +54,7 @@ except:
   sys.exit(1)
 
 
-# All logic, no problems
+# Check in substring, if exception check in popular
 data_all = json.loads(json_data)
 data_movie = None
 try:
@@ -67,7 +67,7 @@ except:
   sys.exit(0)
 
 
-# So responsive!
+# Print out the data
 print "Title: " + data_movie["title"]
 print "Year: " + data_movie["title_description"][0:4]
 
