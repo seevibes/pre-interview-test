@@ -1,0 +1,72 @@
+#!/usr/bin/python
+
+
+import sys
+
+import urllib
+import httplib
+import json
+
+
+
+# Strings to be passed to IMDb API, very PEP8
+str_imdb_search_parameters = "/xml/search?json=1&tt=on&ttype=ft&q=" # ttype=ft forces only movies
+str_imdb_search_title = ""
+
+
+# Loop through the command line arguments and concatenate with a "+"
+i = 1
+while i < len(sys.argv):
+  _arg = sys.argv[i]
+
+  # Escape the string with the %xx notation for URL, since people will try to break the program
+  _arg_escaped = urllib.quote_plus(_arg)
+
+  # Many branches, so suboptimal
+  if str_imdb_search_title == "":
+    str_imdb_search_title = _arg_escaped
+  else:
+    str_imdb_search_title += "+" + _arg_escaped
+
+  i += 1
+
+
+# Check if no parameter has been passed
+if str_imdb_search_title == "":
+  sys.stderr.write("No title parameter has been passed.\n")
+  sys.exit(1)
+
+
+# Create connection to IMDb and send "GET" request with string parameters
+json_data = None
+try:
+  conn_imdb = httplib.HTTPConnection("www.imdb.com")
+  conn_imdb.request("GET", str_imdb_search_parameters + str_imdb_search_title)
+  res = conn_imdb.getresponse()
+  if res.status != 200:
+    sys.stderr.write("An error occurred fetching the movie from IMDb.\n")
+    sys.exit(1)
+  json_data = res.read()
+  res.close()
+except:
+  sys.stderr.write("An exception occured during the connection to the server.\n")
+  sys.exit(1)
+
+
+# Check in substring, if exception check in popular
+data_all = json.loads(json_data)
+data_movie = None
+try:
+  try:
+    data_movie = data_all["title_substring"][0]
+  except:
+    data_movie = data_all["title_popular"][0]
+except:
+  print "No movie has been found :("
+  sys.exit(0)
+
+
+# Print out the data
+print "Title: " + data_movie["title"]
+print "Year: " + data_movie["title_description"][0:4]
+
