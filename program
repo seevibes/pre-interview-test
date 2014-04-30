@@ -27,7 +27,6 @@ while i < len(sys.argv):
     str_imdb_search_title = _arg_escaped
   else:
     str_imdb_search_title += "+" + _arg_escaped
-    #str_imdb_search_title += _arg_escaped
 
   i += 1
 
