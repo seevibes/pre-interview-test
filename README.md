@@ -22,6 +22,25 @@ Create a command-line program that will connect to the IMDB API and given a part
     Year: 2012
 
 
+This is some exemples of my script :
+
+	$ ./program.py batman
+	Title: Batman
+	Year: 1989
+
+	$ ./program.py avengers
+	Title: The Avengers
+	Year: 2012
+
+	$ ./program.py her
+	Title: Her
+	Year: 2013
+
+	$ ./program.py superman
+	Title: Superman
+	Year: 1978
+
+
 ## Procedure
 
 1. Fork this repository
