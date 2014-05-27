@@ -1,0 +1,8 @@
+{
+  "name": "interview",
+  "description": "Seevibes",
+  "version": "0.0.0",
+  "dependencies": {
+    "omdb": "0.1.2"
+  }
+}
