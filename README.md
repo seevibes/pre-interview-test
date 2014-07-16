@@ -37,3 +37,34 @@ Whether you've applied to Seevibes through an internship program, or just want t
 ## Need help?
 
 You can contact François Beausoleil (francois@seevibes.com) if you need any help.
+
+
+
+## Run it!
+
+### This snippet needs a few libs to work, see requirements.txt
+
+### Examples 
+
+```
+./imdb batman
+Title: Batman: Arkham Asylum
+Year: 2009
+```
+
+```
+./imdb avengers
+Title: Avengers: Age of Ultron
+Year: 2015
+```
+
+```
+./imdb lnvifbvcxlkc
+No result found for lnvifbvcxlkc
+```
+
+With no internet connection:
+```
+./imdb batman
+Could not connect to IMDB
+```
