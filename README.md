@@ -42,7 +42,7 @@ You can contact François Beausoleil (francois@seevibes.com) if you need any hel
 
 ## Run it!
 
-### This snippet needs a few libs to work, see requirements.txt
+### This snippet needs a few libs to work, see [requirements.txt](https://github.com/yorrick/pre-interview-test/blob/master/requirements.txt)
 
 ### Examples 
 
@@ -68,3 +68,7 @@ With no internet connection:
 ./imdb batman
 Could not connect to IMDB
 ```
+
+### Tests
+With more time, we could also have developped a few automated tests :)
+
