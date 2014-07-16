@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+
+import requests
+import json
+import sys
+import re
+
+
+if not len(sys.argv) == 2:
+	print "You should give one argument!"
+	sys.exit()
+
+title = sys.argv[1]
+url = 'http://www.imdb.com/xml/find?json=1&nr=0&tt=on&q={0}'.format(title)
+
+try:
+	# response = requests.get('http://www.imdb.com/xml/find?json=1&nr=0&tt=on&mx=1&q={0}'.format(title))
+	response = requests.get(url, timeout=2)
+except Exception as e:
+	print "Could not connect to IMDB: {0}".format(e)
+	sys.exit()	
+
+if not response.status_code == requests.codes.ok:
+	print "Could not query IMDB, returned status code was {0}".format(response.status_code)
+	sys.exit()
+
+# unmarshal json and look for "substring_match"
+json = json.loads(response.content, encoding=response.encoding)
+substring_match = json.get('title_substring', [])
+
+if len(substring_match) <= 0:
+	print "No result found for {0}".format(title)
+	sys.exit()	
+
+first_movie = substring_match[0]
+found_title = first_movie['title']
+match = re.match(r"""(\d\d\d\d).*""", first_movie['description'])
+found_year = "None found" if match is None else match.group(1)
+
+print 'Title: {0}'.format(found_title)
+print 'Year: {0}'.format(found_year)
