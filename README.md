@@ -1,39 +1,31 @@
-# Seevibes Pre-Interview Test
+# Seevibes
 
-![Seevibes Logo](http://www.seevibes.com/assets/corpo/logo-small.png) 
+This gem enables you to find a movie by a partial name on Imdb
 
-Welcome to Seevibes! Thank you for thinking about our company.
+## Installation
 
-Before we do an interview, we want to see a bit of code, and see how you work. This repository has the basic information you need to complete the task.
+Add this line to your application's Gemfile:
 
-Please use any programming language, one your are comfortable with. We are Linux-centric, but you may submit a Windows program if that is easier for you.
+```ruby
+gem 'seevibes'
+```
 
+And then execute:
 
-## Test
+    $ bundle
 
-Create a command-line program that will connect to the IMDB API and given a partial movie name on the command line, will return the full title and release year of the first movie. Some examples:
+Or install it yourself as:
 
-    $ ./program batman
-    Title: Batman Begins
-    Year: 2005
+    $ seevibes-1.0.0.gem
 
-    $ ./program avengers
-    Title: The Avengers
-    Year: 2012
+## Usage
 
+seevibes search batman
 
-## Procedure
+## Contributing
 
-1. Fork this repository
-2. Create the program
-3. Submit a pull request, mentioning @francois and including a sample usage session with the titles above, and others of your own choosing
-4. We will send you an email to confirm the interview details
-
-The test should take about 30 minutes to complete.
-
-Whether you've applied to Seevibes through an internship program, or just want to have fun, go ahead! Fork and tell us.
-
-
-## Need help?
-
-You can contact François Beausoleil (francois@seevibes.com) if you need any help.
+1. Fork it ( https://github.com/[my-github-username]/seevibes/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
