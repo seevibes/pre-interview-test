@@ -9,31 +9,39 @@ Before we do an interview, we want to see a bit of code, and see how you work. T
 Please use any programming language, one your are comfortable with. We are Linux-centric, but you may submit a Windows program if that is easier for you.
 
 
-## Test
+## Installation
 
-Create a command-line program that will connect to the IMDB API and given a partial movie name on the command line, will return the full title and release year of the first movie. Some examples:
+  All gems used ship with Ruby; no need to install anything.
+  
+  From the command line, `cd ` into to repository's root directory. 
+  
+  Ensure that `seevibes.rb:1` points correctly to your Ruby interpreter, and that the file is executable:
+  
+  	`chmod u+x seevibes.rb`
+  	
+  Search for movies by partial name, as shown in the sample session.
+  
+  The first result from IMDB's API will be displayed.
+  
 
-    $ ./program batman
-    Title: Batman Begins
-    Year: 2005
+## Sample Session
 
-    $ ./program avengers
+    $./seevibes.rb batman
+    Title: Batman
+    Year: 1989
+
+    $./seevibes.rb avengers
     Title: The Avengers
     Year: 2012
 
+    $./seevibes.rb days of wine
+    Title: Days of Wine and Roses
+    Year: 1962
 
-## Procedure
+    $./seevibes.rb guess who
+    Title: Guess Who's Coming to Dinner
+    Year: 1967
 
-1. Fork this repository
-2. Create the program
-3. Submit a pull request, mentioning @francois and including a sample usage session with the titles above, and others of your own choosing
-4. We will send you an email to confirm the interview details
-
-The test should take about 30 minutes to complete.
-
-Whether you've applied to Seevibes through an internship program, or just want to have fun, go ahead! Fork and tell us.
-
-
-## Need help?
-
-You can contact François Beausoleil (francois@seevibes.com) if you need any help.
+    $ ./seevibes.rb harry met sal
+    Title: When Harry Met Sally...
+    Year: 1989
