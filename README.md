@@ -17,7 +17,7 @@ Please use any programming language, one your are comfortable with. We are Linux
   
   Ensure that `seevibes.rb:1` points correctly to your Ruby interpreter, and that the file is executable:
   
-  	`chmod u+x seevibes.rb`
+  	chmod u+x seevibes.rb
   	
   Search for movies by partial name, as shown in the sample session.
   
@@ -42,6 +42,6 @@ Please use any programming language, one your are comfortable with. We are Linux
     Title: Guess Who's Coming to Dinner
     Year: 1967
 
-    $ ./seevibes.rb harry met sal
+    $./seevibes.rb harry met sal
     Title: When Harry Met Sally...
     Year: 1989
