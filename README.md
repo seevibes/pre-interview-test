@@ -1,5 +1,7 @@
 # Seevibes Pre-Interview Test
 
+![Seevibes Logo](http://www.seevibes.com/assets/corpo/logo-small.png) 
+
 Welcome to Seevibes! Thank you for thinking about our company.
 
 Before we do an interview, we want to see a bit of code, and see how you work. This repository has the basic information you need to complete the task.
