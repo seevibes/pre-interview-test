@@ -7,6 +7,7 @@
 but if you clone the project
 
 `npm install`
+
 `sudo npm link`
 
 
