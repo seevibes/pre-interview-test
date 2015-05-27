@@ -2,9 +2,16 @@
 
 ## Install
 
+Install nodeJs and npm if not already installed : 
+
+`https://nodejs.org/download/`
+
+
+Then:
+
 `npm install pre-interview-test -g`
 
-but if you clone the project
+Or if you cloned the project : 
 
 `npm install`
 

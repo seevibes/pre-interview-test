@@ -1,6 +1,6 @@
 {
   "name": "pre-interview-test",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Send a partial movie name -> returns full title and release year",
   "main": "index.js",
   "author": "Francois Planet",
