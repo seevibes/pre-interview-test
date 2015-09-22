@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-
 __author__ = 'KerbKerb'
 
 from urllib.request import *
 from urllib.error import *
 import json
 import sys
+import re
 
 
 def search_engine(keys):
@@ -16,7 +16,8 @@ def search_engine(keys):
 
     try:
         title = informations["title_popular"][0]["title"]
-        year = informations["title_popular"][0]["title_description"].split(',')[0]
+        year = informations["title_popular"][0]["title_description"]
+        year = re.split(" |,|/", year)[0]
         return title, year
     except KeyError:
         return None
