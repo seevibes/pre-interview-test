@@ -9,14 +9,16 @@ import sys
 
 
 def search_engine(keys):
-    request = "http://www.omdbapi.com/?t=" + keys + "&y=&plot=short&r=json"
+    request = "http://www.imdb.com/xml/find?json=1&nr=1&tt=on&q=" + keys
     data = urlopen(request).read().decode("utf8")
 
     informations = json.loads(data)
 
-    if informations["Response"] == "True":
-        return informations["Title"], informations["Year"]
-    else:
+    try:
+        title = informations["title_popular"][0]["title"]
+        year = informations["title_popular"][0]["title_description"].split(',')[0]
+        return title, year
+    except KeyError:
         return None
 
 
