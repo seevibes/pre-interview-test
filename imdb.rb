@@ -4,10 +4,10 @@ require "json"
 require "open-uri"
 
 #Vérification du nombre d'argument reçu
-if ARGV.length < 0 
+if ARGV.length > 0 
 	film = ARGV[0]
 else 
-	puts "Erreur: Aucun argment recu. Veuillez entrez un terme de recherche :"
+	puts "Erreur: Aucun argument recu. Veuillez entrez un terme de recherche :"
 	film = gets.chomp
 end 
 
