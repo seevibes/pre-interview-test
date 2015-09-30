@@ -21,7 +21,7 @@ else
 	puts "Usage: ruby Program search_term"
 	exit
 end 
-
+nom_film = URI::encode(nom_film)
 imdb_search_url = "http://www.imdb.com/xml/find?json=1&nr=1&tt=on&q=" + nom_film #request imdb API
 json = open(imdb_search_url).read	#get json file
 
@@ -31,7 +31,9 @@ obj = JSON.parse(json)			#parse json object
 if obj.has_key?("title_popular")	#if movie is found and is popular
 	printMovie(obj,"title_popular")
 elsif obj.has_key?("title_exact")	#if movie is found
-	printMovie(obj,"title_exact")	
+	printMovie(obj,"title_exact")
+elsif obj.has_key?("title_approx")
+	printMovie(obj,"title_approx")	
 else
 	puts "Can not find a movie with this name."
 end
