@@ -1,4 +1,4 @@
-﻿// Programme : Seevibes Pre-Interview Test
+﻿// Programme : MoviesIMDB Pre-Interview Test
 // Auteur : Vincent Desrosiers - 15039557
 // Université de Sherbrooke
 // Date : 02-10-2015
