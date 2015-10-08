@@ -52,7 +52,7 @@ namespace preinterviewtest
                     // Si on a pas de film en retour
                     if(jsonResponse.Error != null)
                     {
-                        Console.WriteLine("No movies found with this name : " + movieTitle[0].ToString());
+                        Console.WriteLine("No movies found");
                     }
                     else
                     {
