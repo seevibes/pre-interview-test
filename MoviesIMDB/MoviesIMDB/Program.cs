@@ -49,19 +49,27 @@ namespace preinterviewtest
                     responseReader.Close();
                     imdbResponse.Close();
 
-                    // Extraction des données du JSON reçu
-                    string Title = jsonResponse.Title;
-                    string Year = jsonResponse.Year;
+                    // Si on a pas de film en retour
+                    if(jsonResponse.Error != null)
+                    {
+                        Console.WriteLine("No movies found with this name : " + movieTitle[0].ToString());
+                    }
+                    else
+                    {
+                        // Extraction des données du JSON reçu
+                        string Title = jsonResponse.Title;
+                        string Year = jsonResponse.Year;
 
-                    // Écriture du résultat en console
-                    Console.WriteLine("Title: " + Title);
-                    Console.WriteLine("Year: " + Year);
+                        // Écriture du résultat en console
+                        Console.WriteLine("Title: " + Title);
+                        Console.WriteLine("Year: " + Year);
+                    }                    
                 }
                 catch
                 {
                     // Une erreur est survenue durant le traitement
                     // Écriture du message d'erreur et définition d'un code d'erreur
-                    Console.WriteLine("Une erreur est survenue. Veuillez réessayer.");
+                    Console.WriteLine("An error as occured, please try again.");
                     iError = 2;
                 }
             }
