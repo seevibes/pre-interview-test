@@ -10,9 +10,10 @@ def callAPI(name)
         # to return videos related to our search term instead of movies
         json = JSON.parse(open("http://www.imdb.com/xml/find?json=1&nr=1&tt=on&q=#{name}") { |x| x.read })
         # Should do more date validation but I will assume it's always the first 4 characters
-        "Title: " + json["title_popular"][0]["title"] + "\nYear: " + json["title_popular"][0]["title_description"][0..3]
+        return "Title: " + json["title_popular"][0]["title"] + "\nYear: " + json["title_popular"][0]["title_description"][0..3] unless json["title_popular"].nil?
+        "No movie with the specified title"
     else
-        "No movie title specified"
+        "Please specify a movie title"
     end
 end
 
