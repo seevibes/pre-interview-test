@@ -1,0 +1,19 @@
+#!/usr/bin/ruby
+#Bonjour, 
+#voici un petit programme qui va cherhcer le titre et l'année d'un film 
+#avec le API de imdb (www.omdbapi.com)
+#
+#Samuel Laroche LARS14039507
+#samuel.laroche@etsmtl.net
+#Étudiant à l'ETS en génie logiciel
+#stage 2
+
+require 'net/http'
+require 'uri'
+require 'json'
+
+uri = URI('http://www.omdbapi.com/?s=' + ARGV[0] +'&y=&plot=short&r=json')
+res = Net::HTTP.get(uri)
+json = JSON.parse(res)
+puts "Title: " + json["Search"][0]["Title"]
+puts "Year: " +json["Search"][0]["Year"]
