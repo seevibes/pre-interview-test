@@ -1,5 +1,3 @@
-package project;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -42,13 +40,26 @@ public class HttpReq {
 				}
 				
 			}
-			// print result
+			String word1="\"title\":";
+			String word2="\"title_description\":";
+			StringBuffer titleS=new StringBuffer();
+			StringBuffer yearS=new StringBuffer();
+			int index=str.indexOf(word1);
+			int index2=str.indexOf(word2);
+			for(int i=index2+word2.length();i<str.length();i++){
+				if(str.charAt(i)==',')break;
+				yearS.append(str.charAt(i));
+			}
+			int stop=0;
+			System.out.println(index);
+			for(int i=index+word1.length();i<str.length();i++){
+				if(stop==2)break;
+				if(str.charAt(i)=='"')stop++;
+				titleS.append(str.charAt(i));
+			}
 			
-			String[] arr=str.split(",");
-			String tit=arr[1];String year=arr[3];
-			String[] origTitle=tit.split(":");String[] origYear=year.split(":");
-			System.out.println("Title: " + origTitle[1]);
-			System.out.println("Year: " + origYear[1]);
+			System.out.println("Title : " +titleS);
+			System.out.println("Year : " + yearS);
 		} else {
 			System.out.println("GET request not worked");
 		}
@@ -56,7 +67,7 @@ public class HttpReq {
 	
 	public static void main(String[] args) {
 		try {
-			sendReq(args[0]);
+			sendReq("dude");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
