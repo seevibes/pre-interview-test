@@ -1,4 +1,19 @@
 # Seevibes Pre-Interview Test
+/** 
+	Here is the explanation to run the program
+**/
+
+step 1:
+$ chmod 0744 movie.py
+step 2:
+change movie.py to 
+program
+step 3:
+./program <name of the movie>
+
+/**
+	end of explanation
+**/
 
 ![Seevibes Logo](http://www.seevibes.com/assets/corpo/logo-small.png) 
 
