@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require "rubygems"
+require "json"
+require "net/http"
+require "uri"
+ERROR_MSG = "Please provide movie title!\nUsage:\n\tprogram <title>".freeze
+
+request = ARGV[0]
+abort(ERROR_MSG) if request.nil?
+
+uri = URI.parse("http://www.imdb.com/xml/find?json=1&nr=1&tt=on&q=#{request}")
+http = Net::HTTP.new(uri.host, uri.port)
+response = http.request(Net::HTTP::Get.new(uri.request_uri))
+abort("Sorry! HTTP response error") if response.code != "200"
+
+result = JSON.parse(response.body)
+abort("Sorry! Nothing found") if result.empty?
+
+title = result["title_popular"][0]["title"]
+year = result["title_popular"][0]["description"][/^\d{4}/]
+
+puts "Title: #{title}"
+puts "Year: #{year}"
