@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+const http = require('http');
+const omdbapi = 'www.omdbapi.com';
+let name = process.argv[2];
+
+if (!name) process.exit(0);
+
+const options = {
+    host: omdbapi,
+    path: getPath(name)
+};
+
+let req = http.request(options, (res) => {
+    res.setEncoding('utf8');
+    let result = '';
+    res.on('data', (data) => {
+        result += data;
+    });
+    res.on('end', () => {
+        let data = JSON.parse(result);
+        let movies = data.Search;
+        //movies.sort((a, b) => { return parseInt(a.Year) >= parseInt(b.Year) ? 1 : -1; });
+        let movie = movies[0];
+        console.log('Title: ' + movie.Title);
+        console.log('Year: ' + movie.Year);
+    });
+});
+req.on('error', (e) => {
+    console.log(`problem with request: ${e.message}`);
+});
+req.end();
+
+function getPath(name) {
+    return '/?s=' + name + '&type=movie';
+}
