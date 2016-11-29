@@ -9,7 +9,7 @@ end
 count = -1
 if ARGV.length == 2
 	begin  
-		count = Integer(ARGV[1])
+		count = Integer(ARGV[1]) - 1
 	rescue
 		count = -1
 	end
