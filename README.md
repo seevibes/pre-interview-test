@@ -1,3 +1,11 @@
+##Usage :
+> ruby program.rb [name of the movie] [number of results]
+
+- [name of the movie] : required
+- [number of results] : optional (all by default)
+
+# Made for :
+
 # Seevibes Pre-Interview Test
 
 ![Seevibes Logo](http://www.seevibes.com/assets/corpo/logo-small.png) 
