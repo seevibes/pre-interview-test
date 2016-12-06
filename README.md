@@ -37,3 +37,23 @@ Whether you've applied to Seevibes through an internship program, or just want t
 ## Need help?
 
 You can contact François Beausoleil (francois@seevibes.com) if you need any help.
+
+## Usage
+Coded on python2.7. It needs to download IMDbPY. I recommend using virtualenv. program.py takes in one required argument and one optional argument. First argument is partial movie title you want to search. Second argument is the number of output with movie title.
+
+Install
+```bash
+    pip install IMDbPY
+```
+
+Some examples 
+```bash
+    ./program.py batman 2
+    Title: Batman v Superman: Dawn of Justice
+    Year: 2016
+
+    Title: Batman Begins
+    Year: 2005
+
+```
+

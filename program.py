@@ -22,15 +22,28 @@ def extract_movies(keyword, nums):
     movies = ia.search_movie(keyword)
     updated = nums
     if nums >= len(movies):
-        updated = len(movies)
-    for item in movies[0:updated]:
-        movies_list.append(split_title_year(item))
+        updated = len(movies)   
+    count = 0
+    for item in movies:
+        if count >= updated:
+            break
+        title, year = split_title_year(item)
+        if keyword.lower() in title.lower():
+            movies_list.append((title, year))
+            count += 1
+
     return movies_list
 
 def print_movies(list_movies):
     for movie in list_movies:
-        print "Title: " + movie[0]
+        print "Title: " + check_the(movie[0])
         print "Year: " + movie[1] + '\n'
+
+def check_the(movie_title):
+    split = movie_title.split(',')
+    if len(split) == 2 and split[1] == ' The':
+        return split[1][1:] + ' ' + split[0]
+    return movie_title
 
 if __name__ == '__main__':
     if (len(sys.argv)) == 3:
