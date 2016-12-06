@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 # File Name: program.py
@@ -46,6 +46,8 @@ if __name__ == '__main__':
         keyword = sys.argv[1]
     else:
         nums = 1
-        keyword = raw_input("Type keyword for search? ")
+        keyword = ""
+        while(not keyword):
+            keyword = raw_input("Type keyword for search? ")
     movie_list = extract_movies(keyword, nums)
     print_movies(movie_list)
